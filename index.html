@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A Beautiful Distraction — intimate music by Michael and Eesa Heijmans." />
+  <title>A Beautiful Distraction</title>
+
+  <style>
+    :root{
+      --bg:#fbfaf7;
+      --paper:rgba(255,255,255,.72);
+      --ink:#231f1a;
+      --muted:rgba(35,31,26,.72);
+      --faint:rgba(35,31,26,.12);
+      --accent:#8a6f55;
+      --shadow:0 12px 40px rgba(0,0,0,.08);
+      --radius:18px;
+      --max:980px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 700px at 20% 0%, rgba(180,154,126,.18), transparent 60%),
+        radial-gradient(900px 600px at 80% 10%, rgba(138,111,85,.14), transparent 55%),
+        linear-gradient(180deg, var(--bg), #f6f2ec);
+      line-height:1.55;
+    }
+
+    a{ color:var(--ink); text-decoration:none; }
+    a:hover{ text-decoration:underline; text-underline-offset:3px; }
+
+    .grain{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.06;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+      mix-blend-mode:multiply;
+    }
+
+    header{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:28px 18px 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+    }
+
+    .wordmark{
+      font-size:16px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    nav{
+      display:flex;
+      gap:14px;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    nav a{ color:var(--muted); }
+    nav a:hover{ color:var(--ink); }
+
+    main{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:18px 18px 70px;
+    }
+
+    .hero{
+      margin-top:18px;
+      padding:28px 22px;
+      border:1px solid var(--faint);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg,var(--paper),rgba(255,255,255,.5));
+      box-shadow:var(--shadow);
+    }
+
+    .hero-inner{
+      display:grid;
+      grid-template-columns:340px 1fr;
+      gap:26px;
+      align-items:center;
+    }
+
+    .logo{
+      width:100%;
+      max-width:340px;
+      border-radius:14px;
+      border:1px solid rgba(0,0,0,.06);
+      background:rgba(255,255,255,.55);
+      box-shadow:0 10px 26px rgba(0,0,0,.06);
+    }
+
+    h1{
+      margin:0 0 10px;
+      font-size:44px;
+      line-height:1.08;
+    }
+
+    .tagline{
+      font-size:18px;
+      color:var(--muted);
+      max-width:52ch;
+    }
+
+    .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .btn{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(35,31,26,.18);
+      background:rgba(255,255,255,.72);
+      font-size:14px;
+      transition:transform .12s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      text-decoration:none;
+    }
+
+    .btn.primary{
+      border-color:rgba(138,111,85,.42);
+      background:linear-gradient(180deg,rgba(180,154,126,.35),rgba(255,255,255,.78));
+    }
+
+    .section{
+      margin-top:22px;
+      padding:22px;
+      border:1px solid var(--faint);
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.6);
+      box-shadow:0 10px 26px rgba(0,0,0,.04);
+    }
+
+    .section h2{
+      margin:0 0 10px;
+      font-size:22px;
+    }
+
+    .section p{
+      color:var(--muted);
+      max-width:78ch;
+    }
+
+    footer{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:28px 18px 38px;
+      font-size:13px;
+      color:rgba(35,31,26,.55);
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+
+    @media (max-width:860px){
+      .hero-inner{ grid-template-columns:1fr; }
+      .logo{ max-width:420px; margin:0 auto; }
+      h1{ font-size:38px; }
+      header{ flex-direction:column; align-items:flex-start; }
+    }
+
+    .butterfly{
+      position:fixed;
+      pointer-events:none;
+      z-index:100;
+      opacity:0.4;
+      filter:drop-shadow(0 1px 3px rgba(0,0,0,.1));
+    }
+
+    .butterfly-body{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      width:3px;
+      height:16px;
+      background:linear-gradient(180deg, var(--accent), #5a4a3a);
+      border-radius:2px;
+    }
+
+    .wing{
+      position:absolute;
+      top:50%;
+      width:14px;
+      height:20px;
+      transform-origin:center right;
+      transform-style:preserve-3d;
+    }
+
+    .wing-left{
+      right:50%;
+      transform:translateY(-50%) rotateY(25deg);
+      animation:flap-left 0.15s ease-in-out infinite;
+    }
+
+    .wing-right{
+      left:50%;
+      transform-origin:center left;
+      transform:translateY(-50%) rotateY(-25deg);
+      animation:flap-right 0.15s ease-in-out infinite;
+    }
+
+    .wing-inner{
+      position:absolute;
+      width:100%;
+      height:100%;
+      border-radius:50% 50% 45% 45%;
+      background:linear-gradient(135deg,
+        rgba(180,154,126,0.9) 0%,
+        rgba(138,111,85,0.8) 50%,
+        rgba(100,80,60,0.7) 100%);
+      box-shadow:inset 0 0 8px rgba(255,255,255,0.3);
+    }
+
+    .wing-left .wing-inner{
+      border-radius:50% 45% 45% 50%;
+    }
+
+    .wing-right .wing-inner{
+      border-radius:45% 50% 50% 45%;
+    }
+
+    .wing-lower{
+      position:absolute;
+      top:55%;
+      width:10px;
+      height:12px;
+      transform-origin:center right;
+    }
+
+    .wing-lower.wing-left{
+      right:50%;
+      animation:flap-left-lower 0.15s ease-in-out infinite;
+    }
+
+    .wing-lower.wing-right{
+      left:50%;
+      transform-origin:center left;
+      animation:flap-right-lower 0.15s ease-in-out infinite;
+    }
+
+    .wing-lower .wing-inner{
+      border-radius:45% 45% 50% 50%;
+      background:linear-gradient(135deg,
+        rgba(160,134,106,0.85) 0%,
+        rgba(118,91,65,0.75) 100%);
+    }
+
+    @keyframes flap-left{
+      0%, 100%{ transform:translateY(-50%) rotateY(25deg); }
+      50%{ transform:translateY(-50%) rotateY(75deg); }
+    }
+
+    @keyframes flap-right{
+      0%, 100%{ transform:translateY(-50%) rotateY(-25deg); }
+      50%{ transform:translateY(-50%) rotateY(-75deg); }
+    }
+
+    @keyframes flap-left-lower{
+      0%, 100%{ transform:translateY(-50%) rotateY(20deg); }
+      50%{ transform:translateY(-50%) rotateY(65deg); }
+    }
+
+    @keyframes flap-right-lower{
+      0%, 100%{ transform:translateY(-50%) rotateY(-20deg); }
+      50%{ transform:translateY(-50%) rotateY(-65deg); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain"></div>
+
+  <header>
+    <div class="wordmark">A Beautiful Distraction</div>
+    <nav>
+      <a href="#listen">Listen</a>
+      <a href="#about">About</a>
+      <a href="#releases">Releases</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <img class="logo" src="abd-logo.png" alt="A Beautiful Distraction logo" />
+
+        <div>
+          <h1>A Beautiful Distraction</h1>
+          <p class="tagline">
+            Intimate songs made together — small truths, quiet moments,
+            and music that exists outside the noise.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn primary" href="https://open.spotify.com/" target="_blank">Spotify</a>
+            <a class="btn" href="https://music.apple.com/" target="_blank">Apple Music</a>
+            <a class="btn" href="https://bandcamp.com/" target="_blank">Bandcamp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <h2>About</h2>
+      <p>
+        <strong>A Beautiful Distraction</strong> is an intimate music project by
+        <strong>Michael and Eesa Heijmans</strong>.
+      </p>
+      <p>
+        These songs are written and recorded together — not for an algorithm,
+        not for an audience, but for the quiet moments in between everything else.
+      </p>
+      <p>
+        Sometimes soft. Sometimes raw. Always honest.
+      </p>
+    </section>
+
+    <section class="section" id="releases">
+      <h2>Releases</h2>
+      <p class="small">A simple record of what we’ve made.</p>
+      <ul>
+        <li><em>Single</em> — “Creep” (2026)</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> A Beautiful Distraction</div>
+    <div>Recorded at <strong>Sanctuary Sound Studios</strong></div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Create butterfly
+    const butterfly = document.createElement('div');
+    butterfly.className = 'butterfly';
+    butterfly.innerHTML = `
+      <div class="wing wing-left"><div class="wing-inner"></div></div>
+      <div class="wing wing-right"><div class="wing-inner"></div></div>
+      <div class="wing wing-lower wing-left"><div class="wing-inner"></div></div>
+      <div class="wing wing-lower wing-right"><div class="wing-inner"></div></div>
+      <div class="butterfly-body"></div>
+    `;
+    document.body.appendChild(butterfly);
+
+    // Butterfly state
+    let x = window.innerWidth * 0.7;
+    let y = window.innerHeight * 0.3;
+    let vx = (Math.random() - 0.5) * 0.3;
+    let vy = (Math.random() - 0.5) * 0.3;
+    let mouseX = x;
+    let mouseY = y;
+
+    // Track mouse position
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // Animate butterfly
+    function animate() {
+      // Calculate distance to mouse
+      const dx = mouseX - x;
+      const dy = mouseY - y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      // Gentle reaction to mouse - drift away if close
+      if (distance < 150) {
+        vx -= dx * 0.0002;
+        vy -= dy * 0.0002;
+      }
+
+      // Add slow, gentle random drifting
+      vx += (Math.random() - 0.5) * 0.04;
+      vy += (Math.random() - 0.5) * 0.04;
+
+      // Apply heavy friction for slow movement
+      vx *= 0.98;
+      vy *= 0.98;
+
+      // Limit speed to very slow
+      const speed = Math.sqrt(vx * vx + vy * vy);
+      const maxSpeed = 0.8;
+      if (speed > maxSpeed) {
+        vx = (vx / speed) * maxSpeed;
+        vy = (vy / speed) * maxSpeed;
+      }
+
+      // Update position
+      x += vx;
+      y += vy;
+
+      // Keep on screen with gentle drift back
+      const margin = 40;
+      if (x < margin) { x = margin; vx += 0.05; }
+      if (x > window.innerWidth - margin) { x = window.innerWidth - margin; vx -= 0.05; }
+      if (y < margin) { y = margin; vy += 0.05; }
+      if (y > window.innerHeight - margin) { y = window.innerHeight - margin; vy -= 0.05; }
+
+      // Apply position
+      butterfly.style.left = x + 'px';
+      butterfly.style.top = y + 'px';
+
+      // Rotate to face direction of travel
+      const angle = Math.atan2(vy, vx) * (180 / Math.PI) + 90;
+      butterfly.style.transform = `rotate(${angle}deg)`;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
