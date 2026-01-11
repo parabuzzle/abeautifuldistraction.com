@@ -6,12 +6,43 @@
   <meta name="description" content="A Beautiful Distraction — handmade music by Michael and Eesa Heijmans." />
   <title>A Beautiful Distraction</title>
 
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://abeautifuldistraction.com/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://abeautifuldistraction.com/" />
+  <meta property="og:title" content="A Beautiful Distraction" />
+  <meta property="og:description" content="Handmade music by Michael and Eesa Heijmans. Intimate songs, small truths, and quiet moments." />
+  <meta property="og:image" content="https://abeautifuldistraction.com/abd-image-680.webp" />
+  <meta property="og:image:alt" content="A Beautiful Distraction album artwork" />
+  <meta property="og:site_name" content="A Beautiful Distraction" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://abeautifuldistraction.com/" />
+  <meta name="twitter:title" content="A Beautiful Distraction" />
+  <meta name="twitter:description" content="Handmade music by Michael and Eesa Heijmans. Intimate songs, small truths, and quiet moments." />
+  <meta name="twitter:image" content="https://abeautifuldistraction.com/abd-image-680.webp" />
+
+  <!-- Theme color for mobile browsers -->
+  <meta name="theme-color" content="#1a1714" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" type="image/webp" href="abd-image-680.webp" />
+
   <style>
     :root{
       --bg:#1a1714;
       --paper:rgba(35,30,26,.85);
       --ink:#e8e2d9;
-      --muted:rgba(232,226,217,.65);
+      --muted:rgba(232,226,217,.75);
       --faint:rgba(232,226,217,.1);
       --accent:#c9a87a;
       --shadow:0 12px 40px rgba(0,0,0,.3);
@@ -20,6 +51,29 @@
     }
 
     *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+
+    /* Focus styles for accessibility */
+    :focus-visible{
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Skip link - hidden until focused */
+    .skip-link{
+      position:absolute;
+      top:-100px;
+      left:50%;
+      transform:translateX(-50%);
+      padding:10px 20px;
+      background:var(--accent);
+      color:var(--bg);
+      border-radius:var(--radius);
+      z-index:1000;
+      font-weight:bold;
+    }
+    .skip-link:focus{ top:10px; }
+
     body{
       margin:0;
       position:relative;
@@ -166,7 +220,7 @@
       margin:0 auto;
       padding:28px 18px 38px;
       font-size:13px;
-      color:rgba(232,226,217,.4);
+      color:rgba(232,226,217,.55);
       display:flex;
       justify-content:space-between;
       flex-wrap:wrap;
@@ -208,10 +262,35 @@
       0%, 100%{ opacity:0.15; transform:scale(0.8); }
       50%{ opacity:0.9; transform:scale(1); }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .firefly {
+        animation: none !important;
+        opacity: 0.5;
+      }
+    }
   </style>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "A Beautiful Distraction",
+    "description": "Handmade music by Michael and Eesa Heijmans. Intimate songs, small truths, and quiet moments.",
+    "url": "https://abeautifuldistraction.com/",
+    "image": "https://abeautifuldistraction.com/abd-image-680.webp",
+    "member": [
+      { "@type": "Person", "name": "Michael Heijmans" },
+      { "@type": "Person", "name": "Eesa Heijmans" }
+    ],
+    "genre": "Indie"
+  }
+  </script>
 </head>
 
 <body>
+  <a href="#main" class="skip-link">Skip to content</a>
   <div class="grain"></div>
 
   <header>
@@ -223,10 +302,16 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero">
       <div class="hero-inner">
-        <img class="logo" src="abd-image.png" alt="A Beautiful Distraction logo" />
+        <picture>
+          <source srcset="abd-image-680.webp 680w, abd-image-840.webp 840w"
+                  sizes="(max-width: 860px) 420px, 340px"
+                  type="image/webp" />
+          <img class="logo" src="abd-image-680.png" alt="A Beautiful Distraction album artwork"
+               width="340" height="340" loading="lazy" decoding="async" />
+        </picture>
 
         <div>
           <h1>A Beautiful Distraction</h1>
@@ -236,10 +321,20 @@
           </p>
 
           <div class="cta-row">
-            <a class="btn primary" href="https://open.spotify.com/" target="_blank">Spotify</a>
-            <a class="btn" href="https://music.apple.com/" target="_blank">Apple Music</a>
+            <a class="btn primary" href="https://open.spotify.com/artist/YOUR_ARTIST_ID" target="_blank" rel="noopener noreferrer">Spotify</a>
+            <a class="btn" href="https://music.apple.com/artist/YOUR_ARTIST_ID" target="_blank" rel="noopener noreferrer">Apple Music</a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="listen">
+      <h2>Listen</h2>
+      <p>Stream our music on your favorite platform.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://open.spotify.com/artist/YOUR_ARTIST_ID" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a class="btn" href="https://music.apple.com/artist/YOUR_ARTIST_ID" target="_blank" rel="noopener noreferrer">Apple Music</a>
+        <a class="btn" href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener noreferrer">YouTube</a>
       </div>
     </section>
 
@@ -269,7 +364,7 @@
 
   <footer>
     <div>© <span id="year"></span> A Beautiful Distraction</div>
-    <div>Recorded at <a href="https://www.sanctuarysound.studio" target="_blank" style="color: #aaa">Sanctuary Sound Studios</a></div>
+    <div>Recorded at <a href="https://www.sanctuarysound.studio" target="_blank" rel="noopener noreferrer" style="color: #aaa">Sanctuary Sound Studios</a></div>
   </footer>
 
   <script>
@@ -312,10 +407,19 @@
     document.addEventListener('mousemove', (e) => {
       mouseX = e.pageX;
       mouseY = e.pageY;
+    }, { passive: true });
+
+    // Pause animation when tab is hidden (save battery/CPU)
+    let animationId = null;
+    let isVisible = true;
+    document.addEventListener('visibilitychange', () => {
+      isVisible = !document.hidden;
+      if (isVisible && !animationId) animate();
     });
 
     // Animate fireflies
     function animate() {
+      if (!isVisible) { animationId = null; return; }
       const width = docWidth();
       const height = docHeight();
 
@@ -369,10 +473,13 @@
         f.el.style.top = f.y + 'px';
       });
 
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
     }
 
-    animate();
+    // Only start animation if motion is allowed
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      animate();
+    }
   </script>
 </body>
 </html>
